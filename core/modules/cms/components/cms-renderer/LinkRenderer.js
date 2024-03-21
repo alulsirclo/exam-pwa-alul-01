@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import { domToReact } from 'html-react-parser';
 import { getStoreHost } from '@helpers/config';
@@ -16,9 +17,22 @@ const LinkRenderer = (props) => {
         return attribs.href;
     };
 
+    const customChildren = children.map((item) => {
+        // if has <img on text link
+        if (item.name === 'img') {
+            let { src } = item.attribs;
+            if (src.includes('media url=')) {
+                const urlClean = src.replace('{{media url=', '').replace('}}', '').replace(/"/g, '');
+                src = `${getStoreHost(getAppEnv())}media/${urlClean}`;
+            }
+            return { ...item, attribs: { ...item.attribs, src } };
+        }
+        return item;
+    });
+
     return (
         <Link {...attribs} href={getUrl()}>
-            {domToReact(children, domNode)}
+            {domToReact(customChildren, domNode)}
         </Link>
     );
 };

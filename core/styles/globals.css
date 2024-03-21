@@ -11,11 +11,15 @@
 
 @layer components {
     .prose {
-        @apply text-base leading-base text-neutral
+        @apply text-base leading-base text-neutral max-w-none
     }
 
     .prose > p > a {
         @apply font-normal text-base leading-base text-neutral
+    }
+
+    .prose a :where(img):not(:where([class~="not-prose"],[class~="not-prose"])) {
+        @apply m-0 inline-block
     }
 }
 
