@@ -84,7 +84,7 @@ const cmsSocialMediaLinkIdentifiers = 'pwa_socmed_links';
 
 /* Header */
 // identifier for header (v1, v2, v3, v4)
-const headerVersion = 'v1';
+const headerVersion = 'v2';
 
 /* Footer */
 // identifier for footer (pwa_footer_v1, pwa_footer_v2, pwa_footer_v3, pwa_footer_v4)
